@@ -1,0 +1,13 @@
+/*
+009D91	1D766F	00665E	33CEC3	5DCEC6
+*/
+
+.navbar-inverse .navbar-inner, .navbar-inverse{
+	background-color: #41A128!important;
+	background-image : none!important;
+}
+
+.navbar-inverse .brand, .navbar-inverse .nav > li > a {
+	color: #fff;
+}
+
