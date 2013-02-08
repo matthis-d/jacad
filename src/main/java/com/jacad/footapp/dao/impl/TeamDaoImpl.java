@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jacad.footapp.dao.TeamDao;
-import com.jacad.footapp.domain.Player;
 import com.jacad.footapp.domain.Team;
 
 @Repository
