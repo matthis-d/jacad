@@ -2,38 +2,65 @@ package com.jacad.footapp.dao.impl;
 
 import java.util.Collection;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import com.jacad.footapp.dao.TeamDao;
+import com.jacad.footapp.domain.Player;
 import com.jacad.footapp.domain.Team;
 
+@Repository
 public class TeamDaoImpl implements TeamDao {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		
+		this.sessionFactory = sessionFactory;
+	}
 
 	@Override
 	public Team getTeamById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Team) this.sessionFactory.getCurrentSession()
+				.createQuery("FROM Team team WHERE team.id = ?")
+				.setParameter(0, id)
+				.uniqueResult();
 	}
 
 	@Override
 	public Collection<Team> getAllTeams() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (Collection<Team>) this.sessionFactory.getCurrentSession()
+				.createQuery("FROM Team team")
+				.list();
 	}
 
 	@Override
 	public void addTeam(Team team) {
-		// TODO Auto-generated method stub
+		
+		this.sessionFactory.getCurrentSession().save(team);
 
 	}
 
 	@Override
 	public void removeTeam(Integer id) {
-		// TODO Auto-generated method stub
+		
+		Team team = this.getTeamById(id);
+		
+		this.sessionFactory.getCurrentSession().delete(team);
 
 	}
 
 	@Override
 	public void updateTeam(Team team) {
-		// TODO Auto-generated method stub
+		
+		Integer id = team.getId();
+		Team theTeam = this.getTeamById(id);
+		theTeam = team;
+		//TODO: est ce que ça suffit ? 
 
 	}
 

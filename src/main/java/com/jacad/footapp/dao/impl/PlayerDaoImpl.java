@@ -1,14 +1,17 @@
 package com.jacad.footapp.dao.impl;
 
 import java.util.Collection;
-
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.jacad.footapp.dao.PlayerDao;
 import com.jacad.footapp.domain.Player;
 
+@Repository
 public class PlayerDaoImpl implements PlayerDao {
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
@@ -19,7 +22,7 @@ public class PlayerDaoImpl implements PlayerDao {
 	public Player getPlayerById(Integer id) {
 		
 		return (Player) this.sessionFactory.getCurrentSession()
-				.createQuery("FROM player p WHERE p.id = ?")
+				.createQuery("FROM Player player WHERE player.id = ?")
 				.setParameter(0, id)
 				.uniqueResult();
 	}
@@ -28,25 +31,31 @@ public class PlayerDaoImpl implements PlayerDao {
 	public Collection<Player> getAllPlayers() {
 		
 		return this.sessionFactory.getCurrentSession()
-				.createQuery("FROM player p")
+				.createQuery("FROM Player p")
 				.list();
 	}
 
 	@Override
 	public void removePlayer(Integer id) {
-		// TODO Auto-generated method stub
+		
+		Player player = this.getPlayerById(id);
+		this.sessionFactory.getCurrentSession().delete(player);
 
 	}
 
 	@Override
 	public void addPlayer(Player player) {
-		// TODO Auto-generated method stub
+		this.sessionFactory.getCurrentSession().save(player);
 
 	}
 
 	@Override
 	public void updatePlayer(Player player) {
-		// TODO Auto-generated method stub
+		
+		Integer id = player.getId();
+		Player thePlayer = this.getPlayerById(id);
+		thePlayer = player;
+		//TODO: est ce que ça suffit ? 
 
 	}
 

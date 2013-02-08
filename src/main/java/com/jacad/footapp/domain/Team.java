@@ -1,30 +1,12 @@
 package com.jacad.footapp.domain;
 
-import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class Team.
  */
-@Entity
-@Table(name="team")
-public class Team implements Serializable{
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Team{
 
 	/** The id. */
 	private Integer id;
@@ -76,9 +58,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the id
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="team_id", unique=true, nullable=false)
 	public Integer getId() {
 		return id;
 	}
@@ -97,7 +76,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the name
 	 */
-	@Column(name="name", nullable=false, length=255)
 	public String getName() {
 		return name;
 	}
@@ -116,7 +94,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the colors
 	 */
-	@Column(name="colors", nullable=false, length=255)
 	public String getColors() {
 		return colors;
 	}
@@ -135,7 +112,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the stadium name
 	 */
-	@Column(name="stadium_name", nullable=true, length=255)
 	public String getStadiumName() {
 		return stadiumName;
 	}
@@ -154,7 +130,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the creation year
 	 */
-	@Column(name="creation_year", nullable=true)
 	public Integer getCreationYear() {
 		return creationYear;
 	}
@@ -173,7 +148,6 @@ public class Team implements Serializable{
 	 *
 	 * @return the players
 	 */
-	@OneToMany(fetch= FetchType.EAGER, mappedBy="team")
 	public Set<Player> getPlayers() {
 		return players;
 	}

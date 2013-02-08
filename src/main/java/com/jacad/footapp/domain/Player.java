@@ -1,32 +1,11 @@
 package com.jacad.footapp.domain;
 
-import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
-
-// TODO: Auto-generated Javadoc
 /**
  * The Class Player.
  */
-@Entity
-@Table(name="player")
-public class Player implements Serializable {
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+public class Player {
 
 	/** The id. */
 	private Integer id;
@@ -85,9 +64,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the id
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="player_id", unique=true, nullable=false)
 	public Integer getId() {
 		return id;
 	}
@@ -106,7 +82,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the first name
 	 */
-	@Column(name="firstname", nullable=false, length=255)
 	public String getFirstName() {
 		return firstName;
 	}
@@ -125,7 +100,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the last name
 	 */
-	@Column(name="lastname", nullable=false, length=255)
 	public String getLastName() {
 		return lastName;
 	}
@@ -144,8 +118,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the birth date
 	 */
-	@Temporal(TemporalType.DATE)
-	@Column(name="birthdate", nullable=true)
 	public Date getBirthDate() {
 		return birthDate;
 	}
@@ -164,7 +136,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the position
 	 */
-	@Column(name="position", length=255, nullable=true)
 	public String getPosition() {
 		return position;
 	}
@@ -183,7 +154,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the weight
 	 */
-	@Column(name="weight", nullable=true)
 	public Float getWeight() {
 		return weight;
 	}
@@ -211,7 +181,6 @@ public class Player implements Serializable {
 	 *
 	 * @param height the new height
 	 */
-	@Column(name="height", nullable=true)
 	public void setHeight(Float height) {
 		this.height = height;
 	}
@@ -221,8 +190,6 @@ public class Player implements Serializable {
 	 *
 	 * @return the team
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
-	@Column(name="team_id", unique=true, nullable=false)
 	public Team getTeam() {
 		return team;
 	}
