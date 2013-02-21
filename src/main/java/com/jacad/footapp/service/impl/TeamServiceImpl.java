@@ -10,8 +10,7 @@ import com.jacad.footapp.dao.TeamDao;
 import com.jacad.footapp.domain.Team;
 import com.jacad.footapp.service.TeamService;
 
-@Service("teamService")
-@Transactional
+@Service(value="teamService")
 public class TeamServiceImpl implements TeamService {
 	
 	/** The team dao. */

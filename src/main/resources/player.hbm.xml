@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+		  "-//Hibernate/Hibernate Mapping DTD 3.0//EN" 
+		  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.jacad.footapp.domain">
+
+	<class name="Player" table="PLAYER">
+		<id name="id" type="integer">
+			<column name="ID" />
+			<generator class="identity" />
+		</id>
+
+		<property name="firstName" type="string">
+			<column name="FIRST_NAME" length="80" not-null="true" />
+		</property>
+
+		<property name="lastName" type="string">
+			<column name="LAST_NAME" length="80" not-null="true" />
+		</property>
+
+		<property name="birthDate" type="date">
+			<column name="BIRTH_DATE" not-null="true" />
+		</property>
+
+		<property name="position" type="string">
+			<column name="POSITION" length="80" not-null="true" />
+		</property>
+
+		<property name="weight" type="float">
+			<column name="WEIGHT" not-null="false" />
+		</property>
+
+		<property name="height" type="float">
+			<column name="HEIGHT" not-null="false" />
+		</property>
+
+		<many-to-one name="team" class="Team" column="TEAM_ID"
+			not-null="true" lazy="false" />
+	</class>
+
+</hibernate-mapping>
