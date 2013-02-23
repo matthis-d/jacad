@@ -5,7 +5,7 @@
       http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
       
     <application>
-        <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+        <variable-resolver>org.springframework.web.jsf.SpringBeanVariableResolver</variable-resolver>
     </application>
 
 </faces-config>

@@ -84,14 +84,17 @@ body {
 						href="a.html" onClick="return(confirm('Etes vous sur ?'));"><i
 							class="icon-trash"></i></a></td>
 				</tr>
-				<tr class="odd gradeX">
-					<td>Asse</td>
-					<td>Vert &amp; Blanc</td>
-					<td>Chaudron</td>
-					<td>4</td>
-					<td><i class="icon-search"></i> <i class="icon-edit"></i> <i
-						class="icon-trash"></i></td>
-				</tr>
+				<ui:repeat value="#{teamController.teams}" var="theTeam">
+					<tr>
+						<td>#{theTeam.name}</td>
+						<td>#{theTeam.colors}</td>
+						<td>#{theTeam.stadiumName}</td>
+						<td>#{theTeam.creationYear}</td>
+						<td><i class="icon-search"></i> <i class="icon-edit"></i> <a
+						href="a.html" onClick="return(confirm('Etes vous sur ?'));"><i
+							class="icon-trash"></i></a></td>
+					</tr>
+				</ui:repeat>
 			</tbody>
 		</table>
 

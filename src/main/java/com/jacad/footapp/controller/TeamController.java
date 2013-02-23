@@ -45,8 +45,9 @@ public class TeamController {
 		logger.info("Get context");
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
 		
+		
 		logger.info("Get bean");
-		//this.teamService = ctx.getBean("teamService", TeamService.class);
+		this.teamService = ctx.getBean("teamService", TeamService.class);
 		
 		this.id = new Integer(0);
 		
@@ -55,7 +56,7 @@ public class TeamController {
 		this.creationYear = 0;
 		this.stadiumName = "";
 		
-		//this.teams = this.teamService.getAllTeams();
+		this.teams = this.teamService.getAllTeams();
 	}
 
 	public Team getTeam() {
@@ -75,6 +76,8 @@ public class TeamController {
 	}
 
 	public Collection<Team> getTeams() {
+		logger.info("In getTeams");
+		this.teams = this.teamService.getAllTeams();
 		return teams;
 	}
 

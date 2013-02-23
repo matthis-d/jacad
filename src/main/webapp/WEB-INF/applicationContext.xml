@@ -9,7 +9,7 @@
            http://www.springframework.org/schema/context/spring-context-3.0.xsd
            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
                
-     <context:component-scan base-package="org.jacad.footapp"/>
+     <context:component-scan base-package="com.jacad.footapp"/>
      
      <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
          <property name="driverClassName" value="${jdbc.driverClassName}" />
