@@ -23,6 +23,7 @@ public interface PlayerDao {
 	 * @return the all players
 	 */
 	public Collection<Player> getAllPlayers();
+	public Collection<Player> getAllPlayersFromTeamId(Integer id);
 	
 	/**
 	 * Removes the player.

@@ -34,6 +34,16 @@ public class PlayerDaoImpl implements PlayerDao {
 				.createQuery("FROM Player p")
 				.list();
 	}
+	
+	@Override
+	public Collection<Player> getAllPlayersFromTeamId(Integer id) {
+		
+		return this.sessionFactory.getCurrentSession()
+				.createQuery("FROM Player p")
+				//.createQuery("FROM Player p WHERE p.TEAM_ID = ?")
+				//.setParameter(0, id)
+				.list();
+	}
 
 	@Override
 	public void removePlayer(Integer id) {

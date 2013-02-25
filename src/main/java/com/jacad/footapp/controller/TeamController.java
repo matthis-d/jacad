@@ -14,6 +14,7 @@ import org.springframework.web.jsf.FacesContextUtils;
 
 import com.jacad.footapp.domain.Player;
 import com.jacad.footapp.domain.Team;
+import com.jacad.footapp.service.PlayerService;
 import com.jacad.footapp.service.TeamService;
 
 @ManagedBean
@@ -23,6 +24,7 @@ public class TeamController {
 	static Logger logger = Logger.getLogger(TeamController.class);
 
 	private TeamService teamService;
+	private PlayerService playerService;
 	
 	private Team team;
 	
@@ -42,21 +44,18 @@ public class TeamController {
 		
 		logger.info("In TeamController constructor");
 		
-		logger.info("Get context");
+	
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
-		
-		
-		logger.info("Get bean");
 		this.teamService = ctx.getBean("teamService", TeamService.class);
+		this.playerService = ctx.getBean("playerService", PlayerService.class);	
+		//this.id = new Integer(0);
 		
-		this.id = new Integer(0);
+		//this.name = "";
+		//this.colors = "";
+		//this.creationYear = 0;
+		//this.stadiumName = "";
 		
-		this.name = "";
-		this.colors = "";
-		this.creationYear = 0;
-		this.stadiumName = "";
-		
-		this.teams = this.teamService.getAllTeams();
+		//this.teams = this.teamService.getAllTeams();
 	}
 
 	public Team getTeam() {
@@ -120,6 +119,8 @@ public class TeamController {
 	public void findTeam() {
 		if(this.isSetId()) {
 			this.team = this.teamService.getTeamById(this.id);
+			logger.debug(this.playerService.getAllPlayersFromTeamId(this.id).toString());
+			this.team.setPlayers(this.playerService.getAllPlayersFromTeamId(this.id));
 		}
 		else {
 			Set<Player> players = new HashSet<>();
@@ -128,12 +129,15 @@ public class TeamController {
 	}
 	
 	public boolean isSetId(){
+		//Todo : bugged :p
+		/*
 		if(this.id == 0 || (this.id > this.teams.size()) ){
 			return Boolean.FALSE;
 		}
 		else {
 			return Boolean.TRUE;
-		}
+		}*/
+		return Boolean.TRUE;
 	}
 	
 	public String createTeam() {

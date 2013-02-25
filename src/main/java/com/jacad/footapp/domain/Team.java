@@ -1,5 +1,6 @@
 package com.jacad.footapp.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public class Team{
 	private Integer creationYear;
 	
 	/** The players. */
-	private Set<Player> players;
+	private Collection<Player> players;
 
 	/**
 	 * Instantiates a new team.
@@ -148,17 +149,17 @@ public class Team{
 	 *
 	 * @return the players
 	 */
-	public Set<Player> getPlayers() {
+	public Collection<Player> getPlayers() {
 		return players;
 	}
 
 	/**
 	 * Sets the players.
 	 *
-	 * @param players the new players
+	 * @param collection the new players
 	 */
-	public void setPlayers(Set<Player> players) {
-		this.players = players;
+	public void setPlayers(Collection<Player> collection) {
+		this.players = collection;
 	}
 	
 	/**

@@ -6,7 +6,7 @@
 
 <f:metadata>
 	<f:viewParam name="id" value="#{teamController.id}" />
-	<f:event type="preRenderView" listener="#{teamController.findTeam}" />
+	<f:event type="preRenderView" listener="#{teamController.getTeams}" />
 </f:metadata>
 
 <head>
@@ -75,23 +75,14 @@ body {
 				</tr>
 			</thead>
 			<tbody>
-				<tr class="odd gradeX">
-					<td>Asse</td>
-					<td>Vert &amp; Blanc</td>
-					<td>Chaudron</td>
-					<td>4</td>
-					<td><i class="icon-search"></i> <i class="icon-edit"></i> <a
-						href="a.html" onClick="return(confirm('Etes vous sur ?'));"><i
-							class="icon-trash"></i></a></td>
-				</tr>
 				<ui:repeat value="#{teamController.teams}" var="theTeam">
 					<tr>
 						<td>#{theTeam.name}</td>
 						<td>#{theTeam.colors}</td>
 						<td>#{theTeam.stadiumName}</td>
 						<td>#{theTeam.creationYear}</td>
-						<td><i class="icon-search"></i> <i class="icon-edit"></i> <a
-						href="a.html" onClick="return(confirm('Etes vous sur ?'));"><i
+						<td><a href="detailEquipe.xhtml?id=#{theTeam.id}"><i class="icon-search"></i></a> <i class="icon-edit"></i> <a
+						href="#{theTeam.id}" onClick="return(confirm('Etes vous sur ?'));"><i
 							class="icon-trash"></i></a></td>
 					</tr>
 				</ui:repeat>

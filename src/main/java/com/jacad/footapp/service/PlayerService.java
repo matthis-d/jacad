@@ -24,6 +24,13 @@ public interface PlayerService {
 	 */
 	public Collection<Player> getAllPlayers();
 	
+	
+	/**
+	 * Gets the all players from team id.
+	 *
+	 * @return the all players from team id
+	 */
+	public Collection<Player> getAllPlayersFromTeamId(Integer id);
 	/**
 	 * Removes the player.
 	 *

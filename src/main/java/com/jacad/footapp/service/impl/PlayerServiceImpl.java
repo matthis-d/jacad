@@ -31,6 +31,13 @@ public class PlayerServiceImpl implements PlayerService {
 		
 		return this.playerDao.getAllPlayers();
 	}
+	
+	@Override
+	@Transactional(readOnly=true)
+	public Collection<Player> getAllPlayersFromTeamId(Integer id) {
+		
+		return this.playerDao.getAllPlayersFromTeamId(id);
+	}
 
 	@Override
 	@Transactional
