@@ -4,10 +4,16 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.apache.log4j.Logger;
+
+import com.jacad.footapp.controller.TeamController;
+
 /**
  * The Class Team.
  */
 public class Team{
+	
+	static Logger logger = Logger.getLogger(Team.class);
 
 	/** The id. */
 	private Integer id;
@@ -32,6 +38,7 @@ public class Team{
 	 */
 	public Team() {
 		super();
+		logger.info("Instanciates a new team");
 		this.players = new HashSet<>();
 	}
 
@@ -47,6 +54,7 @@ public class Team{
 	public Team(String name, String colors, String stadiumName,
 			Integer creationYear, Set<Player> players) {
 		super();
+		logger.info("Instanciates a new team with fields");
 		this.name = name;
 		this.colors = colors;
 		this.stadiumName = stadiumName;
@@ -150,6 +158,12 @@ public class Team{
 	 * @return the players
 	 */
 	public Collection<Player> getPlayers() {
+		logger.info("Return players");
+		
+		for(Player player : players){
+			logger.info(player.toString());
+		}
+		
 		return players;
 	}
 
