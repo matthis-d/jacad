@@ -18,7 +18,7 @@ public class Team{
 	
 	/** The name. */
 	private String name;
-	
+
 	/** The colors. */
 	private String colors;
 	
@@ -199,20 +199,25 @@ public class Team{
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Team [id=");
-		builder.append(id);
-		builder.append(", name=");
 		builder.append(name);
-		builder.append(", colors=");
-		builder.append(colors);
-		builder.append(", stadiumName=");
-		builder.append(stadiumName);
-		builder.append(", creationYear=");
-		builder.append(creationYear);
-		builder.append(", players=");
-		builder.append(players);
-		builder.append("]");
 		return builder.toString();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Team other = (Team) obj;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 }

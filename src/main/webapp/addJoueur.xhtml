@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:metadata>
+	<f:event type="preRenderView" listener="#{playerController.findTeams}" />
+</f:metadata>
+
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+			<div class="hero-unit">
+				<h3>Ajout d'un joueur</h3>	
+				<h:form class="form-horizontal">
+			    	<div class="control-group">
+			    		<label class="control-label" for="firstName">Prénom</label>
+			    		<div class="controls">
+							<h:inputText id="firstName" title="Prénom" value="#{playerController.firstName}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="lastName">Nom</label>
+			    		<div class="controls">
+							<h:inputText id="lastName" title="Nom" value="#{playerController.lastName}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="birthDate">Date de naissance</label>
+			    		<div class="controls">
+							<h:inputText id="birthDate" title="Date de naissance" value="#{playerController.birthDate}">
+								<f:convertDateTime pattern="yyyy-M-dd" />
+							</h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="height">Taille</label>
+			    		<div class="controls">
+							<h:inputText id="height" title="Taille" value="#{playerController.height}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="weight">Poids</label>
+			    		<div class="controls">
+							<h:inputText id="weight" title="Poids" value="#{playerController.weight}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="position">Poste</label>
+			    		<div class="controls">
+							<h:inputText id="position" title="Poste" value="#{playerController.position}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="team">Equipe</label>
+			    		<div class="controls">
+							<h:selectOneMenu id="team" value="#{playerController.team}" >
+								  <f:selectItems value="#{playerController.teams}" var="t"
+   									itemLabel="#{t.name}" itemValue="#{t}" />
+							</h:selectOneMenu>
+						</div>
+					</div>
+					<h:commandButton id="submit" class="btn btn-primary" value="Enregistrer" action="#{playerController.createPlayer}"/>
+			    </h:form>
+			</div>
+			
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

@@ -50,7 +50,6 @@ public class TeamController implements Serializable {
 	public TeamController() {
 		
 		logger.info("In TeamController constructor");
-		
 	
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
 		this.teamService = ctx.getBean("teamService", TeamService.class);
@@ -173,7 +172,7 @@ public class TeamController implements Serializable {
 		
 		if(this.name.isEmpty() || this.colors.isEmpty() || this.creationYear == 0 || this.stadiumName.isEmpty()) {
 			
-			logger.info("Something is missing during the edition");
+			logger.warn("Something is missing during the edition");
 			
 			return "editEquipe?id="+this.getId();
 		}
@@ -181,27 +180,24 @@ public class TeamController implements Serializable {
 			
 			this.team = this.teamService.getTeamById(this.id);
 			
-			logger.info("Set the new name");
-			logger.info(this.name);
 			this.team.setName(this.name);
 			
-			logger.info("Set the new colors");
-			logger.info(this.colors);
 			this.team.setColors(this.colors);
 			
-			logger.info("Set the new stadium name");
-			logger.info(this.stadiumName);
 			this.team.setStadiumName(this.stadiumName);
 			
-			logger.info("Set the new creation year");
-			logger.info(this.creationYear);
 			this.team.setCreationYear(this.creationYear);
 			
-			logger.info("Update the team");
 			this.teamService.updateTeam(team);
 			
 			return "equipes";
 		}
+	}
+	
+	public String deleteTeam() {
+		
+		this.teamService.removeTeam(this.id);
+		return "equipes";
 	}
 	
 }
