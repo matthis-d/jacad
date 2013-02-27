@@ -1,12 +1,14 @@
 package com.jacad.footapp.dao.impl;
 
 import java.util.Collection;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.jacad.footapp.dao.PlayerDao;
 import com.jacad.footapp.domain.Player;
+import com.jacad.footapp.domain.Team;
 
 @Repository
 public class PlayerDaoImpl implements PlayerDao {
@@ -27,6 +29,7 @@ public class PlayerDaoImpl implements PlayerDao {
 				.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Player> getAllPlayers() {
 		
@@ -35,13 +38,18 @@ public class PlayerDaoImpl implements PlayerDao {
 				.list();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Player> getAllPlayersFromTeamId(Integer id) {
 		
+		Team team = (Team)this.sessionFactory.getCurrentSession()
+				.createQuery("FROM Team t WHERE t.id = :id")
+				.setParameter("id", id)
+				.uniqueResult();
+		
 		return this.sessionFactory.getCurrentSession()
-				.createQuery("FROM Player p")
-				//.createQuery("FROM Player p WHERE p.TEAM_ID = ?")
-				//.setParameter(0, id)
+				.createQuery("FROM Player p WHERE p.team = ?")
+				.setParameter(0, team)
 				.list();
 	}
 
@@ -65,7 +73,7 @@ public class PlayerDaoImpl implements PlayerDao {
 		Integer id = player.getId();
 		Player thePlayer = this.getPlayerById(id);
 		thePlayer = player;
-		//TODO: est ce que ça suffit ? 
+		this.sessionFactory.getCurrentSession().merge(thePlayer);
 
 	}
 

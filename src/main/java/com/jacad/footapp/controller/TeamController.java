@@ -1,5 +1,6 @@
 package com.jacad.footapp.controller;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,11 +20,17 @@ import com.jacad.footapp.service.TeamService;
 
 @ManagedBean
 @RequestScoped
-public class TeamController {
+public class TeamController implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	static Logger logger = Logger.getLogger(TeamController.class);
 
 	private TeamService teamService;
+	
 	private PlayerService playerService;
 	
 	private Team team;
@@ -48,14 +55,6 @@ public class TeamController {
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
 		this.teamService = ctx.getBean("teamService", TeamService.class);
 		this.playerService = ctx.getBean("playerService", PlayerService.class);	
-		//this.id = new Integer(0);
-		
-		//this.name = "";
-		//this.colors = "";
-		//this.creationYear = 0;
-		//this.stadiumName = "";
-		
-		//this.teams = this.teamService.getAllTeams();
 	}
 
 	public Team getTeam() {
@@ -117,9 +116,19 @@ public class TeamController {
 	}
 
 	public void findTeam() {
+		
+		logger.info("In findTeam");
+		
 		if(this.isSetId()) {
 			this.team = this.teamService.getTeamById(this.id);
-			logger.debug(this.playerService.getAllPlayersFromTeamId(this.id).toString());
+			
+			logger.info("The team is: " + this.team.toString());
+			
+			this.name = this.team.getName();
+			this.colors = this.team.getColors();
+			this.stadiumName = this.team.getStadiumName();
+			this.creationYear = this.team.getCreationYear();
+			
 			this.team.setPlayers(this.playerService.getAllPlayersFromTeamId(this.id));
 		}
 		else {
@@ -142,7 +151,7 @@ public class TeamController {
 	
 	public String createTeam() {
 		if(this.name.isEmpty() || this.colors.isEmpty() || this.creationYear == 0 || this.stadiumName.isEmpty()) {
-			return "addTeam";
+			return "addEquipe";
 		}
 		else {
 			Team team = new Team();
@@ -154,23 +163,44 @@ public class TeamController {
 			
 			this.teamService.addTeam(team);
 			
-			return "teams";
+			return "equipes";
 		}
 	}
 	
 	public String editTeam() {
+		
+		logger.info("In edit team");
+		
 		if(this.name.isEmpty() || this.colors.isEmpty() || this.creationYear == 0 || this.stadiumName.isEmpty()) {
-			return "editTeam";
+			
+			logger.info("Something is missing during the edition");
+			
+			return "editEquipe?id="+this.getId();
 		}
 		else {
+			
+			this.team = this.teamService.getTeamById(this.id);
+			
+			logger.info("Set the new name");
+			logger.info(this.name);
 			this.team.setName(this.name);
+			
+			logger.info("Set the new colors");
+			logger.info(this.colors);
 			this.team.setColors(this.colors);
+			
+			logger.info("Set the new stadium name");
+			logger.info(this.stadiumName);
 			this.team.setStadiumName(this.stadiumName);
+			
+			logger.info("Set the new creation year");
+			logger.info(this.creationYear);
 			this.team.setCreationYear(this.creationYear);
 			
+			logger.info("Update the team");
 			this.teamService.updateTeam(team);
 			
-			return "teams";
+			return "equipes";
 		}
 	}
 	

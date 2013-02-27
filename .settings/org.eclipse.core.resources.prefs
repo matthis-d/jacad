@@ -2,5 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/jacad/footapp/controller/TeamController.java=UTF-8
 encoding//src/main/java/com/jacad/footapp/dao/impl/PlayerDaoImpl.java=UTF-8
 encoding//src/main/java/com/jacad/footapp/dao/impl/TeamDaoImpl.java=UTF-8
+encoding//src/main/webapp/addEquipe.xhtml=UTF-8
 encoding//src/main/webapp/detailEquipe.xhtml=UTF-8
+encoding//src/main/webapp/editEquipe.xhtml=UTF-8
 encoding//src/main/webapp/equipes.xhtml=UTF-8

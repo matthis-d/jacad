@@ -2,6 +2,7 @@ package com.jacad.footapp.dao.impl;
 
 import java.util.Collection;
 
+import org.apache.log4j.Logger;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,6 +12,8 @@ import com.jacad.footapp.domain.Team;
 
 @Repository
 public class TeamDaoImpl implements TeamDao {
+	
+	static Logger logger = Logger.getLogger(TeamDaoImpl.class);
 	
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -56,10 +59,12 @@ public class TeamDaoImpl implements TeamDao {
 	@Override
 	public void updateTeam(Team team) {
 		
+		logger.info("In update team");
+		
 		Integer id = team.getId();
 		Team theTeam = this.getTeamById(id);
 		theTeam = team;
-		//TODO: est ce que ça suffit ? 
+		this.sessionFactory.getCurrentSession().merge(theTeam);
 
 	}
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+			<div class="hero-unit">
+				<h3>Ajout d'une equipe</h3>	
+				<h:form class="form-horizontal">
+			    	<div class="control-group">
+			    		<label class="control-label" for="name">Nom</label>
+			    		<div class="controls">
+							<h:inputText id="name" title="Nom" value="#{teamController.name}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="colors">Couleurs</label>
+			    		<div class="controls">
+							<h:inputText id="colors" title="Couleurs" value="#{teamController.colors}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="stadiumName">Nom du stade</label>
+			    		<div class="controls">
+							<h:inputText id="stadiumName" title="Nom du stade" value="#{teamController.stadiumName}"> </h:inputText>
+						</div>
+					</div>
+					<div class="control-group">
+			    		<label class="control-label" for="creationYear">Année de création</label>
+			    		<div class="controls">
+							<h:inputText id="creationYear" title="Année de création" value="#{teamController.creationYear}"> </h:inputText>
+						</div>
+					</div>
+					<h:commandButton id="submit" class="btn btn-primary" value="Enregistrer" action="#{teamController.createTeam}"/>
+			    </h:form>
+			</div>
+			
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

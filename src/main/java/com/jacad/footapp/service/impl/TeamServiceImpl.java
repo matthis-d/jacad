@@ -2,6 +2,7 @@ package com.jacad.footapp.service.impl;
 
 import java.util.Collection;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,8 @@ import com.jacad.footapp.service.TeamService;
 
 @Service("teamService")
 public class TeamServiceImpl implements TeamService {
+	
+	static Logger logger = Logger.getLogger(TeamServiceImpl.class);
 	
 	/** The team dao. */
 	@Autowired
@@ -48,6 +51,8 @@ public class TeamServiceImpl implements TeamService {
 	@Override
 	@Transactional
 	public void updateTeam(Team team) {
+		
+		logger.info("In update team from TeamServiceImpl");
 		
 		this.teamDao.updateTeam(team);
 	}

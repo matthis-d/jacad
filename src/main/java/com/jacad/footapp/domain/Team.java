@@ -6,8 +6,6 @@ import java.util.Set;
 
 import org.apache.log4j.Logger;
 
-import com.jacad.footapp.controller.TeamController;
-
 /**
  * The Class Team.
  */
@@ -95,6 +93,10 @@ public class Team{
 	 * @param name the new name
 	 */
 	public void setName(String name) {
+		
+		logger.info("Set the team's name");
+		logger.info("The new name is "+ name);
+		
 		this.name = name;
 	}
 
@@ -192,6 +194,25 @@ public class Team{
 	 */
 	public void removePlayer(Player player) {
 		this.players.remove(player);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Team [id=");
+		builder.append(id);
+		builder.append(", name=");
+		builder.append(name);
+		builder.append(", colors=");
+		builder.append(colors);
+		builder.append(", stadiumName=");
+		builder.append(stadiumName);
+		builder.append(", creationYear=");
+		builder.append(creationYear);
+		builder.append(", players=");
+		builder.append(players);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

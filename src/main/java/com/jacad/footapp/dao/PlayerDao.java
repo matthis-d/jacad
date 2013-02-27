@@ -23,6 +23,14 @@ public interface PlayerDao {
 	 * @return the all players
 	 */
 	public Collection<Player> getAllPlayers();
+	
+	
+	/**
+	 * Gets the all players from team id.
+	 *
+	 * @param id the id
+	 * @return the all players from team id
+	 */
 	public Collection<Player> getAllPlayersFromTeamId(Integer id);
 	
 	/**
