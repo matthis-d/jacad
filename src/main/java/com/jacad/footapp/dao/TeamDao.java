@@ -42,4 +42,13 @@ public interface TeamDao {
 	 */
 	public void updateTeam(Team team);
 
+	
+	/**
+	 * Gets the team by name.
+	 *
+	 * @param name the name
+	 * @return the team by name
+	 */
+	public Team getTeamByName(String name);
+
 }

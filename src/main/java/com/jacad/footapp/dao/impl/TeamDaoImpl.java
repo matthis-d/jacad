@@ -68,4 +68,13 @@ public class TeamDaoImpl implements TeamDao {
 
 	}
 
+	@Override
+	public Team getTeamByName(String name) {
+		
+		return (Team) this.sessionFactory.getCurrentSession()
+				.createQuery("FROM Team team WHERE team.name = :name")
+				.setParameter("name", name)
+				.uniqueResult();
+	}
+
 }

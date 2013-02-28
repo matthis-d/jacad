@@ -57,4 +57,11 @@ public class TeamServiceImpl implements TeamService {
 		this.teamDao.updateTeam(team);
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public Team getTeamByName(String name) {
+		
+		return this.teamDao.getTeamByName(name);
+	}
+
 }

@@ -44,5 +44,14 @@ public interface TeamService {
 	 * @param team the team
 	 */
 	public void updateTeam(Team team);
+	
+	
+	/**
+	 * Gets the team by name.
+	 *
+	 * @param name the name
+	 * @return the team by name
+	 */
+	public Team getTeamByName(String name);
 
 }

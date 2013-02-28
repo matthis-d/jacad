@@ -58,6 +58,8 @@ public class PlayerController implements Serializable {
 	/** The team. */
 	private Team team;
 	
+	private Integer teamId;
+	
 	private Collection<Team> teams;
 
 	public PlayerController() {
@@ -158,6 +160,14 @@ public class PlayerController implements Serializable {
 		this.teams = teams;
 	}
 
+	public Integer getTeamId() {
+		return teamId;
+	}
+
+	public void setTeamId(Integer teamId) {
+		this.teamId = teamId;
+	}
+
 	public void findPlayer() {
 		
 		this.player = this.playerService.getPlayerById(this.id);
@@ -176,6 +186,8 @@ public class PlayerController implements Serializable {
 			return "addJoueur";
 		}
 		else {
+			
+			//this.team = this.teamService.getTeamById(this.teamId);
 			
 			Player player = new Player();
 			player.setFirstName(this.firstName);

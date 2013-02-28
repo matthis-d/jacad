@@ -58,6 +58,7 @@
 							<h:selectOneMenu id="team" value="#{playerController.team}" >
 								  <f:selectItems value="#{playerController.teams}" var="t"
    									itemLabel="#{t.name}" itemValue="#{t}" />
+   									<f:converter converterId="TeamConverter"/>
 							</h:selectOneMenu>
 						</div>
 					</div>
