@@ -45,7 +45,6 @@
 								<th>Nom</th>
 								<th class="hidden-phone">Poste</th>
 								<th class="hidden-phone">Date de Naissance</th>
-								<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -54,34 +53,19 @@
 									<td>#{thePlayer.firstName} #{thePlayer.lastName}</td>
 									<td class="hidden-phone">#{thePlayer.position}</td>
 									<td class="hidden-phone">#{thePlayer.birthDate}</td>
-									<td><i class="icon-search"></i> <i class="icon-edit"></i> <a
-										href="a.html" onClick="return(confirm('Etes vous sur ?'));"><i
-											class="icon-trash"></i></a> <a href="#myModal" role="button"
-										class="" data-toggle="modal"><i class="icon-retweet"></i></a></td>
 								</tr>
 							</ui:repeat>
 						</tbody>
 					</table>
 				</div>
+				
+				<p>
+					<br/>
+					<a href="editEquipe.xhtml?id=#{teamController.team.id}"><button class="btn btn-primary">Editer</button></a>
+					<a href="deleteEquipe.xhtml?id=#{teamController.team.id}"><button class="btn btn-danger">Supprimer</button></a>
+					<a href="equipes.xhtml"><button class="btn">Retour à la liste</button></a>
+				</p>
 	
-			</div>
-		</ui:define>
-		
-		<ui:define name="complements">
-			<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
-				aria-labelledby="myModalLabel" aria-hidden="true">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">×</button>
-					<h3 id="myModalLabel">Transfert</h3>
-				</div>
-				<div class="modal-body">
-					<p>Formulaire</p>
-				</div>
-				<div class="modal-footer">
-					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-					<button class="btn btn-primary">Save changes</button>
-				</div>
 			</div>
 		</ui:define>
 		

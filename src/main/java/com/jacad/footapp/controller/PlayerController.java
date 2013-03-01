@@ -3,6 +3,8 @@ package com.jacad.footapp.controller;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -68,11 +70,12 @@ public class PlayerController implements Serializable {
 		ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
 		this.teamService = ctx.getBean("teamService", TeamService.class);
 		this.playerService = ctx.getBean("playerService", PlayerService.class);	
-		
-		this.players = this.playerService.getAllPlayers();
 	}
 
 	public Collection<Player> getPlayers() {
+		
+		this.players = this.playerService.getAllPlayers();
+		
 		return players;
 	}
 
@@ -185,9 +188,8 @@ public class PlayerController implements Serializable {
 		if(this.firstName.isEmpty() || this.lastName.isEmpty() || this.position.isEmpty() ) {
 			return "addJoueur";
 		}
-		else {
-			
-			//this.team = this.teamService.getTeamById(this.teamId);
+		else {			
+			this.team = this.teamService.getTeamById(this.teamId);
 			
 			Player player = new Player();
 			player.setFirstName(this.firstName);
@@ -225,9 +227,27 @@ public class PlayerController implements Serializable {
 		}
 	}
 	
+	public String deletePlayer() {
+		this.playerService.removePlayer(this.id);
+		return "joueurs";
+	}
+	
 	public void findTeams() {
 		
 		this.teams = this.teamService.getAllTeams();
 	}
 
+	public Map<String, String> getMapOfTeams() {
+
+		Map<String, String> result = new HashMap<String, String>();
+		
+		this.teams = this.teamService.getAllTeams();
+		
+		for (Team team : this.teams) {
+			
+			result.put(team.getName(), team.getId().toString());
+		}
+		
+		return result;		
+	}
 }

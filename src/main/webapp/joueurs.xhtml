@@ -39,14 +39,19 @@
 						<td>#{player.weight}</td>
 						<td>#{player.team.name}</td>
 						<td>
-							<a href="#"><i class="icon-search"></i></a> 
-							<a href="#"><i class="icon-edit"></i></a> 
-							<a href="#" onClick="return(confirm('Etes vous sur ?'));"><i class="icon-trash"></i></a>
+							<a href="detailJoueur.xhtml?id=#{player.id}"><i class="icon-search"></i></a> 
+							<a href="editJoueur.xhtml?id=#{player.id}"><i class="icon-edit"></i></a> 
+							<a href="deleteJoueur.xhtml?id=#{player.id}" onClick="return(confirm('Etes vous sur ?'));"><i class="icon-trash"></i></a>
 						</td>
 					</tr>
 				</ui:repeat>
 			</tbody>
 		</table>
+		
+		<br/> 
+		<p>
+			<a href="addJoueur.xhtml"><button class="btn btn-primary">Ajouter un joueur</button></a>
+		</p>
 
 		</ui:define>
 		<ui:define name="scripts">

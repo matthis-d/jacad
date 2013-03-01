@@ -43,6 +43,7 @@ public class PlayerServiceImpl implements PlayerService {
 	@Transactional
 	public void removePlayer(Integer id) {
 		
+		
 		this.playerDao.removePlayer(id);
 	}
 

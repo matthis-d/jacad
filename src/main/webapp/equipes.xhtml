@@ -35,12 +35,17 @@
 						<td>
 							<a href="detailEquipe.xhtml?id=#{theTeam.id}"><i class="icon-search"></i></a> 
 							<a href="editEquipe.xhtml?id=#{theTeam.id}"><i class="icon-edit"></i></a> 
-							<a href="#" onClick="return(confirm('Etes vous sur ?'));"><i class="icon-trash"></i></a>
+							<a href="deleteEquipe.xhtml?id=#{theTeam.id}" onClick="return(confirm('Etes vous sur ?'));"><i class="icon-trash"></i></a>
 						</td>
 					</tr>
 				</ui:repeat>
 			</tbody>
 		</table>
+		
+		<br/> 
+		<p>
+			<a href="addEquipe.xhtml"><button class="btn btn-primary">Ajouter une équipe</button></a>
+		</p>
 
 		</ui:define>
 		<ui:define name="scripts">

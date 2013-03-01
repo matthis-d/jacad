@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+<f:metadata>
+	<f:viewParam name="id" value="#{playerController.id}" />
+	<f:event type="preRenderView" listener="#{playerController.findPlayer}" />
+</f:metadata>
+
+
+
+<h:body>
+	<ui:composition template="template.xhtml">
+		<ui:define name="content">
+			<ul class="breadcrumb">
+				<li><a href="equipes.xhtml">Home</a> <span class="divider">/</span></li>
+				<li><a href="joueurs.xhtml">Joueur</a> <span class="divider">/</span></li>
+				<li class="active">#{playerController.player.firstName} #{playerController.player.lastName}</li>
+			</ul>
+	
+	
+			<div class="hero-unit">
+				<h3>#{playerController.player.firstName} #{playerController.player.lastName}</h3>
+				
+				<div id="details">
+					<span class="label">Taille</span> #{playerController.player.height} m<br />
+					<span class="label">Poids</span> #{playerController.player.weight} kg<br /> 
+					<span class="label">Poste</span> #{playerController.player.position} <br />
+					<span class="label">Club</span> #{playerController.player.team.name}
+				</div>
+				<p>
+					<br/>
+					<a href="editJoueur.xhtml?id=#{playerController.player.id}"><button class="btn btn-primary">Editer</button></a>
+					<a href="deleteJoueur.xhtml?id=#{playerController.player.id}"><button class="btn btn-danger">Supprimer</button></a>
+					<a href="joueurs.xhtml"><button class="btn">Retour à la liste</button></a>
+				</p>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

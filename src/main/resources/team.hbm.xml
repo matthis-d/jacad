@@ -26,7 +26,7 @@
 			<column name="CREATION_YEAR" not-null="false" />
 		</property>
 
-		<set name="players" inverse="true" lazy="false" cascade="all,delete-orphan">
+		<set name="players" inverse="true" lazy="false" cascade="delete-orphan">
             <key column="TEAM_ID"/>
             <one-to-many class="Player"/>
         </set>

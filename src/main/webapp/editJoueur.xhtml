@@ -5,6 +5,8 @@
 	xmlns:f="http://java.sun.com/jsf/core">
 
 <f:metadata>
+	<f:viewParam name="id" value="#{playerController.id}" />
+	<f:event type="preRenderView" listener="#{playerController.findPlayer}" />
 	<f:event type="preRenderView" listener="#{playerController.findTeams}" />
 </f:metadata>
 
@@ -12,7 +14,7 @@
 	<ui:composition template="template.xhtml">
 		<ui:define name="content">
 			<div class="hero-unit">
-				<h3>Ajout d'un joueur</h3>	
+				<h3>Edition d'un joueur</h3>	
 				<h:form class="form-horizontal">
 			    	<div class="control-group">
 			    		<label class="control-label" for="firstName">Prénom</label>
@@ -60,8 +62,8 @@
 							</h:selectOneMenu>
 						</div>
 					</div>
-					<h:commandButton id="submit" class="btn btn-primary" value="Enregistrer" action="#{playerController.createPlayer}"/>
-					<a href="joueurs.xhtml"><button class="btn">Retour</button></a>
+					<h:commandButton id="submit" class="btn btn-primary" value="Enregistrer" action="#{playerController.editPlayer}"/>
+					<a href="joueurs.xhtml"><button class="btn">Retour à la liste</button></a>
 			    </h:form>
 			</div>
 			
