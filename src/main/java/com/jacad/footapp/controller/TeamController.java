@@ -18,35 +18,49 @@ import com.jacad.footapp.domain.Team;
 import com.jacad.footapp.service.PlayerService;
 import com.jacad.footapp.service.TeamService;
 
+/**
+ * The Class TeamController.
+ */
 @ManagedBean
 @RequestScoped
 public class TeamController implements Serializable {
 	
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
 
+	/** The logger. */
 	static Logger logger = Logger.getLogger(TeamController.class);
 
+	/** The team service. */
 	private TeamService teamService;
 	
+	/** The player service. */
 	private PlayerService playerService;
 	
+	/** The team. */
 	private Team team;
 	
+	/** The id. */
 	private Integer id;
 	
+	/** The teams. */
 	private Collection<Team> teams;
 	
+	/** The name. */
 	private String name;
 	
+	/** The colors. */
 	private String colors;
 	
+	/** The stadium name. */
 	private String stadiumName;
 	
+	/** The creation year. */
 	private Integer creationYear;
 	
+	/**
+	 * Instantiates a new team controller.
+	 */
 	public TeamController() {
 		
 		logger.info("In TeamController constructor");
@@ -56,103 +70,197 @@ public class TeamController implements Serializable {
 		this.playerService = ctx.getBean("playerService", PlayerService.class);	
 	}
 
+	/**
+	 * Gets the team.
+	 *
+	 * @return the team
+	 */
 	public Team getTeam() {
+		
+		logger.info("Gets the team of this instance");
 		return team;
 	}
 
+	/**
+	 * Sets the team.
+	 *
+	 * @param team the new team
+	 */
 	public void setTeam(Team team) {
+		
+		logger.info("Sets the team of this instance");
 		this.team = team;
 	}
 
+	/**
+	 * Gets the id.
+	 *
+	 * @return the id
+	 */
 	public Integer getId() {
+		
+		logger.info("Gets the team's id of this instance");
 		return id;
 	}
 
+	/**
+	 * Sets the id.
+	 *
+	 * @param id the new id
+	 */
 	public void setId(Integer id) {
+		
+		logger.info("Sets the team's id of this instance");
 		this.id = id;
 	}
 
+	/**
+	 * Gets the teams.
+	 *
+	 * @return the teams
+	 */
 	public Collection<Team> getTeams() {
-		logger.info("In getTeams");
+		logger.info("Gets all the teams from the database");
 		this.teams = this.teamService.getAllTeams();
 		return teams;
 	}
 
+	/**
+	 * Sets the teams.
+	 *
+	 * @param teams the new teams
+	 */
 	public void setTeams(Collection<Team> teams) {
+		
+		logger.info("Sets the teams of this instance");
 		this.teams = teams;
 	}
 	
+	/**
+	 * Gets the name.
+	 *
+	 * @return the name
+	 */
 	public String getName() {
+		
+		logger.info("Gets the team's name of this instance");
 		return name;
 	}
 
+	/**
+	 * Sets the name.
+	 *
+	 * @param name the new name
+	 */
 	public void setName(String name) {
+		
+		logger.info("Sets the team's name of this instance");
 		this.name = name;
 	}
 
+	/**
+	 * Gets the colors.
+	 *
+	 * @return the colors
+	 */
 	public String getColors() {
+		
+		logger.info("Gets the team's colors of this instance");
 		return colors;
 	}
 
+	/**
+	 * Sets the colors.
+	 *
+	 * @param colors the new colors
+	 */
 	public void setColors(String colors) {
+		
+		logger.info("Sets the team's colors of this instance");
 		this.colors = colors;
 	}
 
+	/**
+	 * Gets the stadium name.
+	 *
+	 * @return the stadium name
+	 */
 	public String getStadiumName() {
+		
+		logger.info("Gets the team's stadium name of this instance");
 		return stadiumName;
 	}
 
+	/**
+	 * Sets the stadium name.
+	 *
+	 * @param stadiumName the new stadium name
+	 */
 	public void setStadiumName(String stadiumName) {
+		
+		logger.info("Sets the team's satdium name of this instance");
 		this.stadiumName = stadiumName;
 	}
 
+	/**
+	 * Gets the creation year.
+	 *
+	 * @return the creation year
+	 */
 	public Integer getCreationYear() {
+		
+		logger.info("Gets the team's creation year of this instance");
 		return creationYear;
 	}
 
+	/**
+	 * Sets the creation year.
+	 *
+	 * @param creationYear the new creation year
+	 */
 	public void setCreationYear(Integer creationYear) {
+		
+		logger.info("Sets the team's creation year of this instance");
 		this.creationYear = creationYear;
 	}
 
+	/**
+	 * Find team.
+	 */
 	public void findTeam() {
 		
 		logger.info("In findTeam");
+		logger.info("Gets the team according to the id in parameter");
 		
-		if(this.isSetId()) {
-			this.team = this.teamService.getTeamById(this.id);
-			
-			logger.info("The team is: " + this.team.toString());
-			
-			this.name = this.team.getName();
-			this.colors = this.team.getColors();
-			this.stadiumName = this.team.getStadiumName();
-			this.creationYear = this.team.getCreationYear();
-			
-			this.team.setPlayers(this.playerService.getAllPlayersFromTeamId(this.id));
-		}
-		else {
-			Set<Player> players = new HashSet<>();
-			this.team = new Team("Undefined", "", "", 0, players);
-		}
+		logger.info("Gets the team from the database");
+		this.team = this.teamService.getTeamById(this.id);
+		
+		logger.info("The team is: " + this.team.toString());
+		
+		logger.info("Sets all the information coressponding to this team");
+		this.name = this.team.getName();
+		this.colors = this.team.getColors();
+		this.stadiumName = this.team.getStadiumName();
+		this.creationYear = this.team.getCreationYear();
+		
+		logger.info("Gets the players of this team");
+		this.team.setPlayers(this.playerService.getAllPlayersFromTeamId(this.id));
 	}
 	
-	public boolean isSetId(){
-		//Todo : bugged :p
-		/*
-		if(this.id == 0 || (this.id > this.teams.size()) ){
-			return Boolean.FALSE;
-		}
-		else {
-			return Boolean.TRUE;
-		}*/
-		return Boolean.TRUE;
-	}
-	
+	/**
+	 * Creates the team.
+	 *
+	 * @return the string
+	 */
 	public String createTeam() {
 		if(this.name.isEmpty() || this.colors.isEmpty() || this.creationYear == 0 || this.stadiumName.isEmpty()) {
+			
+			logger.warn("Something is missing in order to create the team");
 			return "addEquipe";
 		}
 		else {
+			
+			logger.info("Creates a new team according to the inputs");
 			Team team = new Team();
 			team.setName(this.name);
 			team.setColors(this.colors);
@@ -160,12 +268,19 @@ public class TeamController implements Serializable {
 			team.setCreationYear(this.creationYear);
 			team.setPlayers(new HashSet<Player>());
 			
+			logger.info("Adds the team in database");
 			this.teamService.addTeam(team);
 			
+			logger.info("Redirects to the homepage");
 			return "equipes";
 		}
 	}
 	
+	/**
+	 * Edits the team.
+	 *
+	 * @return the string
+	 */
 	public String editTeam() {
 		
 		logger.info("In edit team");
@@ -178,7 +293,11 @@ public class TeamController implements Serializable {
 		}
 		else {
 			
+			logger.info("Gets the team correpsonding to the id in parameter");
+			
 			this.team = this.teamService.getTeamById(this.id);
+			
+			logger.info("Updates the team according to the inputs");
 			
 			this.team.setName(this.name);
 			
@@ -194,8 +313,14 @@ public class TeamController implements Serializable {
 		}
 	}
 	
+	/**
+	 * Delete team.
+	 *
+	 * @return the string
+	 */
 	public String deleteTeam() {
 		
+		logger.info("Removes the team from teh database");		
 		this.teamService.removeTeam(this.id);
 		return "equipes";
 	}

@@ -28,6 +28,7 @@ public interface PlayerService {
 	/**
 	 * Gets the all players from team id.
 	 *
+	 * @param id the id
 	 * @return the all players from team id
 	 */
 	public Collection<Player> getAllPlayersFromTeamId(Integer id);

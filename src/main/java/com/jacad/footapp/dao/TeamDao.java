@@ -4,6 +4,9 @@ import java.util.Collection;
 
 import com.jacad.footapp.domain.Team;
 
+/**
+ * The Interface TeamDao.
+ */
 public interface TeamDao {
 	
 	/**

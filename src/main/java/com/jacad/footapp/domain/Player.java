@@ -2,10 +2,14 @@ package com.jacad.footapp.domain;
 
 import java.util.Date;
 
+import org.apache.log4j.Logger;
+
 /**
  * The Class Player.
  */
 public class Player {
+	
+	static Logger logger = Logger.getLogger(Player.class);
 
 	/** The id. */
 	private Integer id;
@@ -36,6 +40,8 @@ public class Player {
 	 */
 	public Player() {
 		super();
+		
+		logger.info("Creates a player with empty fields");
 	}
 
 	/**
@@ -51,6 +57,9 @@ public class Player {
 	public Player(String firstName, String lastName, Date birthDate,
 			String position, Float weight, Float height) {
 		super();
+		
+		logger.info("Creates a player with fields");
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.birthDate = birthDate;
